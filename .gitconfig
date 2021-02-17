@@ -135,3 +135,6 @@
 	showPatch = true
 [log]
 	date = relative
+[user]
+	name = Henry Castro
+	email = henry.castro87@gmail.com

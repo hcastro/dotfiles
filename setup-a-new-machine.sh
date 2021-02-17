@@ -41,8 +41,8 @@ cp -Rp ~/Documents ~/migration
 
 cp -Rp /Library/Preferences/SystemConfiguration/com.apple.airport.preferences.plist ~/migration/rootLibrary/Preferences/SystemConfiguration/ # wifi
 
-cp -Rp ~/Library/Preferences/net.limechat.LimeChat.plist ~/migration/Library/Preferences/
-cp -Rp ~/Library/Preferences/com.tinyspeck.slackmacgap.plist ~/migration/Library/Preferences/
+# cp -Rp ~/Library/Preferences/net.limechat.LimeChat.plist ~/migration/Library/Preferences/
+# cp -Rp ~/Library/Preferences/com.tinyspeck.slackmacgap.plist ~/migration/Library/Preferences/
 
 cp -Rp ~/Library/Services ~/migration/Library/ # automator stuff
 cp -Rp ~/Library/Fonts ~/migration/Library/ # all those fonts you've installed
@@ -148,7 +148,7 @@ export PATH=$HOME/homebrew/bin:$HOME/homebrew/sbin:$PATH
 
 # github.com/jamiew/git-friendly
 # the `push` command which copies the github compare URL to my clipboard is heaven
-bash < <( curl https://raw.github.com/jamiew/git-friendly/master/install.sh)
+# bash < <( curl https://raw.github.com/jamiew/git-friendly/master/install.sh)
 
 # autocompletion for git branch names https://git-scm.com/book/en/v1/Git-Basics-Tips-and-Tricks
 curl https://raw.githubusercontent.com/git/git/master/contrib/completion/git-completion.bash -o ~/.git-completion.bash
@@ -210,7 +210,7 @@ echo $BASH_VERSION # should be 4.x not the old 3.2.X
 
 
 # setting up the sublime symlink
-ln -sf "/Applications/Sublime Text.app/Contents/SharedSupport/bin/subl" ~/bin/subl
+# ln -sf "/Applications/Sublime Text.app/Contents/SharedSupport/bin/subl" ~/bin/subl
 
 # install nvm (Node Version Nanager, https://github.com/nvm-sh/nvm)
 curl -o- https://raw.githubusercontent.com/nvm-sh/nvm/v0.34.0/install.sh | bash
@@ -220,41 +220,41 @@ curl -o- https://raw.githubusercontent.com/nvm-sh/nvm/v0.34.0/install.sh | bash
 ##############################################################################################################
 
 
-## Chromium hacking
+# ## Chromium hacking
 
-# improve perf of git inside of chromium checkout
+# # improve perf of git inside of chromium checkout
 
-# read https://chromium.googlesource.com/chromium/src/+/master/docs/mac_build_instructions.md
+# # read https://chromium.googlesource.com/chromium/src/+/master/docs/mac_build_instructions.md
 
-# default is (257*1024)
-sudo sysctl kern.maxvnodes=$((512*1024))
-echo kern.maxvnodes=$((512*1024)) | sudo tee -a /etc/sysctl.conf
+# # default is (257*1024)
+# sudo sysctl kern.maxvnodes=$((512*1024))
+# echo kern.maxvnodes=$((512*1024)) | sudo tee -a /etc/sysctl.conf
 
-# https://facebook.github.io/watchman/docs/install.html#mac-os-file-descriptor-limits
-sudo sysctl -w kern.maxfiles=$((10*1024*1024))
-sudo sysctl -w kern.maxfilesperproc=$((1024*1024))
-echo kern.maxfiles=$((10*1024*1024)) | sudo tee -a /etc/sysctl.conf
-echo kern.maxfilesperproc=$((1024*1024)) | sudo tee -a /etc/sysctl.conf
+# # https://facebook.github.io/watchman/docs/install.html#mac-os-file-descriptor-limits
+# sudo sysctl -w kern.maxfiles=$((10*1024*1024))
+# sudo sysctl -w kern.maxfilesperproc=$((1024*1024))
+# echo kern.maxfiles=$((10*1024*1024)) | sudo tee -a /etc/sysctl.conf
+# echo kern.maxfilesperproc=$((1024*1024)) | sudo tee -a /etc/sysctl.conf
 
-# also it looks like there's still a session limit thx to ulimit.
-# this sets file descriptor max (per shell session above 256). (see `man ulimit`)
-ulimit -n 98304 # same as ulimit -n $((1024*1024))
-# see https://gist.github.com/tombigel/d503800a282fcadbee14b537735d202c for how this will stick around.......
+# # also it looks like there's still a session limit thx to ulimit.
+# # this sets file descriptor max (per shell session above 256). (see `man ulimit`)
+# ulimit -n 98304 # same as ulimit -n $((1024*1024))
+# # see https://gist.github.com/tombigel/d503800a282fcadbee14b537735d202c for how this will stick around.......
 
 
-# speed up git status (to run only in chromium repo)
-git config status.showuntrackedfiles no
-git update-index --untracked-cache
+# # speed up git status (to run only in chromium repo)
+# git config status.showuntrackedfiles no
+# git update-index --untracked-cache
 
-# faster git server communication.
-# like a LOT faster. https://opensource.googleblog.com/2018/05/introducing-git-protocol-version-2.html
-git config protocol.version 2
+# # faster git server communication.
+# # like a LOT faster. https://opensource.googleblog.com/2018/05/introducing-git-protocol-version-2.html
+# git config protocol.version 2
 
-# see also "A Chromium Compiling Setup for DevTools Hackers"
-# https://gist.github.com/paulirish/2d84a6db1b41b4020685
+# # see also "A Chromium Compiling Setup for DevTools Hackers"
+# # https://gist.github.com/paulirish/2d84a6db1b41b4020685
 
-# also this unrelated thing
-# git config user.email "xxxx@chromium.org"
+# # also this unrelated thing
+# # git config user.email "xxxx@chromium.org"
 
 
 ##############################################################################################################

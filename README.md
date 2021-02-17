@@ -85,6 +85,8 @@ Lastly, I use `open .` to open Finder from this path. (That's just available nor
 
 ### `.extra` for your private configuration
 
+Make sure to do this step otherwise, your PATH for brew (and other tools) may end up breaking.
+
 There will be items that don't belong to be committed to a git repo, because either 1) it shoudn't be the same across your machines or 2) it shouldn't be in a git repo. Kick it off like this:
 
 `touch ~/.extra && $EDITOR $_`
